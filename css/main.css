@@ -10,32 +10,10 @@ body{
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.form-search-container{
-    position: relative;
-    width: 100%;
-}
-.form-search-container i{
-    
-    position: absolute;
-    top: 30%;
-    right: 20px;
-    
-}
 
 
-.search{
-    box-sizing:border-box;
-    width: 100%;
-    border: none;
-    background-color: #e7e7e7;
-    border-radius: 2px;
-    padding: 10px;
-    height: 100%;
-}
-.search-icon{
-    min-width: 10px;
-    
-}
+
+
 .recette-card{
 
     flex: 0 0 30%;                       /* don't grow, don't shrink, width */

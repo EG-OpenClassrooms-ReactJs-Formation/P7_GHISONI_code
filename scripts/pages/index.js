@@ -1,5 +1,6 @@
 //import recipes from '../../data'
 async function getRecipes() {
+
 const recipes = [
     {
         "id": 1,
@@ -72,9 +73,11 @@ const recipes = [
         "ustensils": ["presse citron"]
     }
 ]
-
     return ({
         recipes: [...recipes, ...recipes, ...recipes]})
+
+
+    //return recipes;
 }
 
 async function displayData(recipes) {

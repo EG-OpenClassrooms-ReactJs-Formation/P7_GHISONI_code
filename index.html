@@ -6,7 +6,8 @@
         <meta name="referrer" content="strict-origin" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" href="css/main.css" />
-        
+        <link rel="stylesheet" href="css/dropdown.css" />
+        <link rel="stylesheet" href="css/search_field.css" />
         <title>Les petits plats</title>
     </head>
     
@@ -20,17 +21,24 @@
                     <div class="form-search-container">
                         <input type="text" name="text" class="search" placeholder="Rechercher une recette" />
                         <i class="fa fa-search search-icon"></i>
-                    <div>
+                    </div>
+
                     <!--Create a filter part-->
-                    <div>
+                    <div class="filter-row">
+                        <div class="dropdown-container ingrediants">
+                            <input type="text" name="text" class="dropdown-input" placeholder="Ingrédiants" />
+                            <i class="fa fa-angle-down search-icon"></i>
+                        </div>
                     </div>
                 </form>
+                
             </section>
             <!--Section cards grid-->
             <section class="cards-section">
                 
             </section>
         </main>
+        <script src="data.js"></script>
         <script src="scripts/factories/recipesCardsFactory.js"></script>
         <script src="scripts/pages/index.js" ></script>
         

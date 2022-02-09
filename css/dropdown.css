@@ -1,0 +1,51 @@
+.dropdown-container{
+    position: relative;
+    width: 150px;
+    background-color: #e91111;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.dropdown-container i{
+    
+    position: absolute;
+    top: 30%;
+    right: 20px;
+    color: white;
+}
+
+.dropdown-input{
+    box-sizing:border-box;
+    width: 100%;
+    border: none;
+    background-color: #e7e7e711;
+    border-radius: 2px;
+    padding: 10px;
+    height: 100%;
+}
+.dropdown-input::placeholder{
+    color: white;
+}
+.dropdown-input:focus::placeholder {
+    color: transparent;
+}
+.dropdown-input:focus{
+    outline: none;
+    border: none;
+}
+.dropdown-input:focus ~ i {
+    
+    animation-name: spin;
+    animation-duration: 100ms;
+    animation-iteration-count: initial;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(180deg);
+    }
+}
