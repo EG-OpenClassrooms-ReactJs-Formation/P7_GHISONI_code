@@ -1,14 +1,30 @@
 .dropdown-container{
     position: relative;
-    width: 150px;
-    background-color: #e91111;
+    /*width: 150px;*/
+    
     border-radius: 5px;
     margin-bottom: 20px;
+    width: fit-content;
+}
+
+#dropdown-ingrediants{
+    background-color: #3282f7;
+}
+#dropdown-appliance{
+    background-color: #68d9a4;
+}
+#dropdown-ustensils{
+    background-color: #ed6454;
+}
+
+.elements-container{
+    /*display: none;*/
+    display: flex;
 }
 .dropdown-container i{
     
     position: absolute;
-    top: 30%;
+    top: 10px;
     right: 20px;
     color: white;
 }
@@ -41,6 +57,13 @@
     animation-fill-mode: forwards;
 }
 
+#dropdown-ingredients-lists{
+    display: flex;
+}
+#dropdown-ustensils-lists{
+    display: flex;
+}
+
 @keyframes spin {
     from {
         transform:rotate(0deg);
@@ -49,3 +72,4 @@
         transform:rotate(180deg);
     }
 }
+

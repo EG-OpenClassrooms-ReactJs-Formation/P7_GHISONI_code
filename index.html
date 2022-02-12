@@ -25,9 +25,34 @@
 
                     <!--Create a filter part-->
                     <div class="filter-row">
-                        <div class="dropdown-container ingrediants">
-                            <input type="text" name="text" class="dropdown-input" placeholder="Ingrédiants" />
-                            <i class="fa fa-angle-down search-icon"></i>
+                        <div id="dropdown-ingrediants" class="dropdown-container">
+                            <div>
+                                <input type="text" name="text" class="dropdown-input" placeholder="Ingrédiants" />
+                                <i id="arrow-ingrediants" class="fa fa-angle-down search-icon"></i>
+                            </div>
+                            <div id="dropdown-ingredients-lists">
+
+                            </div>
+                        </div>
+
+                        <div id="dropdown-appliance" class="dropdown-container">
+                            <div>
+                                <input type="text" name="text" class="dropdown-input" placeholder="Appliance" />
+                                <i id="arrow-appliance" class="fa fa-angle-down search-icon"></i>
+                            </div>
+                            <div id="dropdown-appliance-lists">
+
+                            </div>
+                        </div>
+
+                        <div id="dropdown-ustensils" class="dropdown-container">
+                            <div>
+                                <input type="text" name="text" class="dropdown-input" placeholder="Ustensils" />
+                                <i id="arrow-appliance" class="fa fa-angle-down search-icon"></i>
+                            </div>
+                            <div id="dropdown-ustensils-lists">
+
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -40,6 +65,7 @@
         </main>
         <script src="data.js"></script>
         <script src="scripts/factories/recipesCardsFactory.js"></script>
+        <script src="scripts/factories/elementsDropdownListFactory.js"></script>
         <script src="scripts/pages/index.js" ></script>
         
     </body>

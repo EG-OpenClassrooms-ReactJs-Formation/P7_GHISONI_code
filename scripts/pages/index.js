@@ -1,19 +1,41 @@
 //import recipes from '../../data'
 //const recipes = require('../../data');
 function getRecipes() {
-    console.log(recipes);
+    
     return recipes;
 }
 
 function displayData(recipes) {
+    // To generate recipes cards
     const recipesCardsSection = document.querySelector(".cards-section");
-    console.log(recipes);
+
+    const ingrediantsDropdown = document.getElementById("dropdown-ingrediants-lists");
     recipes.forEach((recipe) => {
-        console.log(recipe);
+        
         const recipesCardsModel = recipesCardsFactory(recipe);
         const userCardDOM = recipesCardsModel.getRecipesCardDOM();
         recipesCardsSection.appendChild(userCardDOM);
+
+        
+        const ingrediantDropDownModel = elementDropDownListFactory(recipe);
+        const listElementContainerDOM = ingrediantDropDownModel.getElementListDropDownDOM("ingredients");
+        
+        ingrediantDropDownModel.getElementListDropDownDOM("appliance");
+        ingrediantDropDownModel.getElementListDropDownDOM("ustensils");
+        //ingrediantsDropdown.appendChild(listElementContainerDOM);
+        
+        
     });
+
+    
+    
+    /*
+    recipes.forEach((recipe) => {
+        
+        
+    });*/
+    
+
 };
 
 function init() {

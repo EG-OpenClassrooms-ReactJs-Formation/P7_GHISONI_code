@@ -3,6 +3,10 @@ body{
     margin-right: 5%;
 }
 
+.filter-row{
+    display: flex;
+}
+
 .cards-section{
     
     display: flex;

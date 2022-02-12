@@ -2,7 +2,7 @@ function recipesCardsFactory(data) {
     const { name, time, ingredients, description} = data;
     //const name = data.name;
     
-    console.log('data' + data);
+    
     const picture = 'assets/Solid_grey.png';
 
     function getRecipesCardDOM() {
