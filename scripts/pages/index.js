@@ -16,6 +16,7 @@ function displayData(recipes) {
         const userCardDOM = recipesCardsModel.getRecipesCardDOM();
         recipesCardsSection.appendChild(userCardDOM);
 
+        // TODO check unicity of each values before pass it to the factory
         
         const ingrediantDropDownModel = elementDropDownListFactory(recipe);
         const listElementContainerDOM = ingrediantDropDownModel.getElementListDropDownDOM("ingredients");

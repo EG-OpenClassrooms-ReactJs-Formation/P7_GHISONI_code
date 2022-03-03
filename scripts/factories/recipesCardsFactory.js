@@ -34,7 +34,7 @@ function recipesCardsFactory(data) {
         recette_titre.setAttribute("class", "recette-titre");
         recette_titre.innerHTML = data.name;
         //console.log("name: " + data.name)
-
+        
         // declare recette_time
         const recette_time = document.createElement( 'div' );
         recette_time.setAttribute("class", "recette-time");

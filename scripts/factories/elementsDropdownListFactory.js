@@ -11,7 +11,7 @@ function elementDropDownListFactory(data, selectedElement) {
         //elementsContainer.setAttribute("id", "elements-container-ingrediants");
         const elementsContainer = document.getElementById("dropdown-"+elementName+"-lists");
         // declare recette-list-ingrediants
-
+        
         var elementList1 = 0;
         var elementList2 = 0;
         var elementList3 = 0;
@@ -29,7 +29,7 @@ function elementDropDownListFactory(data, selectedElement) {
         
         } else{
             elementList1 = document.getElementById(elementName +"-list-1");
-        
+            
             elementList2 = document.getElementById(elementName +"-list-2");
 
             elementList3 = document.getElementById(elementName +"-list-3");
@@ -54,12 +54,15 @@ function elementDropDownListFactory(data, selectedElement) {
                 }
             }
         }
-        /*
+
+        
         if (elementName == "appliance"){
             var li = document.createElement('li');
             var elementName = document.createElement('p');
-            elementName.textContent = element.ingredients[i].ingredient;
+            elementName.textContent = element.appliance;
             li.appendChild(elementName);
+            elementList1.appendChild(li);
+            /*
             if(i%3 == 0){
                 elementList1.appendChild(li);
             }
@@ -69,7 +72,8 @@ function elementDropDownListFactory(data, selectedElement) {
             if(i%3 == 2){
                 elementList3.appendChild(li);
             }
-        }*/
+            */
+        }
 
         if (elementName == "ustensils"){
             for (var i = 0; i < element.ustensils.length; i++) {

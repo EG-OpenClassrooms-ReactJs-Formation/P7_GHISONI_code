@@ -104,3 +104,9 @@ li{
     height: 30px;
     
 }
+
+.cards-section::after {
+    content: "";
+    flex: auto;
+    max-width: 30%;
+}
