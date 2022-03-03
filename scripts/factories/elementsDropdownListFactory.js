@@ -1,11 +1,12 @@
 function elementDropDownListFactory(data, selectedElement) {
     
-    element = data
-    console.log(element.ingredients.length)
+    //console.log(element.ingredients.length)
     //console.log(element.ingredients[0].ingredient)
     const picture = 'assets/Solid_grey.png';
-
-    function getElementListDropDownDOM(elementName) {
+    element = data;
+    
+    function getElementListDropDownDOM(elementName, elementInDropdownCounter) {
+        console.log(element);
         // declare the element card
         //const elementsContainer = document.createElement('div');
         //elementsContainer.setAttribute("id", "elements-container-ingrediants");
@@ -15,8 +16,9 @@ function elementDropDownListFactory(data, selectedElement) {
         var elementList1 = 0;
         var elementList2 = 0;
         var elementList3 = 0;
+        
         if(!document.getElementById(elementName +"-list-1")){
-            console.log('test done');
+            
             elementList1 = document.createElement( 'ul' );
             elementList1.setAttribute("id", elementName + "-list-1");
             // declare recette-list-ingrediants
@@ -37,61 +39,65 @@ function elementDropDownListFactory(data, selectedElement) {
 
         if (elementName == "ingredients"){
             
-            for (var i = 0; i < element.ingredients.length; i++) {
-                
-                var li = document.createElement('li');
-                var elementName = document.createElement('p');
-                elementName.textContent = element.ingredients[i].ingredient;
-                li.appendChild(elementName);
-                if(i%3 == 0){
-                    elementList1.appendChild(li);
-                }
-                if(i%3 == 1){
-                    elementList2.appendChild(li);
-                }
-                if(i%3 == 2){
-                    elementList3.appendChild(li);
-                }
+            var li = document.createElement('li');
+            var elementName = document.createElement('p');
+            //elementName.textContent = element.ingredients[i].ingredient;
+            elementName.textContent = element;
+            li.appendChild(elementName);
+            //elementList1.appendChild(li);
+            
+            if(elementInDropdownCounter%3 == 0){
+                elementList1.appendChild(li);
             }
+            if(elementInDropdownCounter%3 == 1){
+                elementList2.appendChild(li);
+            }
+            if(elementInDropdownCounter%3 == 2){
+                elementList3.appendChild(li);
+            }
+            
         }
 
         
         if (elementName == "appliance"){
             var li = document.createElement('li');
             var elementName = document.createElement('p');
-            elementName.textContent = element.appliance;
+            elementName.textContent = element;
             li.appendChild(elementName);
-            elementList1.appendChild(li);
-            /*
-            if(i%3 == 0){
+            //elementList1.appendChild(li);
+            
+            if(elementInDropdownCounter % 3 == 0){
                 elementList1.appendChild(li);
             }
-            if(i%3 == 1){
+            if(elementInDropdownCounter % 3 == 1){
                 elementList2.appendChild(li);
             }
-            if(i%3 == 2){
+            if(elementInDropdownCounter %3 == 2){
                 elementList3.appendChild(li);
             }
-            */
+            
         }
 
         if (elementName == "ustensils"){
-            for (var i = 0; i < element.ustensils.length; i++) {
-                
-                var li = document.createElement('li');
-                var elementName = document.createElement('p');
-                elementName.textContent = element.ustensils[i]
-                li.appendChild(elementName);
-                if(i%3 == 0){
-                    elementList1.appendChild(li);
-                }
-                if(i%3 == 1){
-                    elementList2.appendChild(li);
-                }
-                if(i%3 == 2){
-                    elementList3.appendChild(li);
-                }
+            
+            var li = document.createElement('li');
+            var elementName = document.createElement('p');
+            //elementName.textContent = element.ustensils[i]
+            elementName.textContent = element;
+            li.appendChild(elementName);
+            //elementList1.appendChild(li);
+            
+            if(elementInDropdownCounter % 3 == 0){
+                elementList1.appendChild(li);
             }
+            if(elementInDropdownCounter % 3 == 1){
+                elementList2.appendChild(li);
+            }
+            if(elementInDropdownCounter % 3 == 2){
+                elementList3.appendChild(li);
+            }
+            
+            
         }
         if(!document.getElementById(elementName +"-list-1")){
             // Append child in elementsContainer
@@ -99,10 +105,10 @@ function elementDropDownListFactory(data, selectedElement) {
             elementsContainer.appendChild(elementList2);
             elementsContainer.appendChild(elementList3);
         }
+        elementsContainer.appendChild(elementList1);
 
-
-
+        
         return (elementsContainer);
     }
-    return { name, picture, getElementListDropDownDOM }
+    return { getElementListDropDownDOM }
 }

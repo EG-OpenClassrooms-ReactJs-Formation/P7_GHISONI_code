@@ -57,12 +57,22 @@
     animation-timing-function: linear;
     animation-fill-mode: forwards;
 }
+.dropdown-input:focus > .dropdown-element-lists {
+    display: none;
+}
+
 
 #dropdown-ingredients-lists{
     display: flex;
+    
 }
 #dropdown-ustensils-lists{
     display: flex;
+    
+}
+#dropdown-appliance-lists{
+    display: flex;
+    
 }
 
 @keyframes spin {
