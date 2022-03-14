@@ -137,6 +137,15 @@ function displayData(recipes) {
 
     });
     
+    const IngredientFilterComponent = document.querySelectorAll(".filter-ingredient-element");
+    const ApplianceFilterComponent = document.querySelectorAll(".filter-appliance-element");
+    const UstensilFilterComponent = document.querySelectorAll(".filter-ustensil-element");
+    IngredientFilterComponent.forEach(ingredientFilter => {
+        ingredientFilter.addEventListener('click', function handleClick(event){
+            console.log(ingredientFilter.textContent);
+        })
+    }
+    );
 
 };
 

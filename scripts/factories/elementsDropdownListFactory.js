@@ -42,6 +42,7 @@ function elementDropDownListFactory(data, selectedElement) {
             var li = document.createElement('li');
             var elementName = document.createElement('p');
             //elementName.textContent = element.ingredients[i].ingredient;
+            elementName.setAttribute("class", "filter-ingredient-element");
             elementName.textContent = element;
             li.appendChild(elementName);
             //elementList1.appendChild(li);
@@ -62,7 +63,8 @@ function elementDropDownListFactory(data, selectedElement) {
         if (elementName == "appliance"){
             var li = document.createElement('li');
             var elementName = document.createElement('p');
-            
+            //elementName.setAttribute("class", "filter-text-element");
+            elementName.setAttribute("class", "filter-appliance-element");
             elementName.textContent = element;
             li.appendChild(elementName);
             //elementList1.appendChild(li);
@@ -84,6 +86,7 @@ function elementDropDownListFactory(data, selectedElement) {
             var li = document.createElement('li');
             var elementName = document.createElement('p');
             //elementName.textContent = element.ustensils[i]
+            elementName.setAttribute("class", "filter-ustensil-element");
             elementName.textContent = element;
             li.appendChild(elementName);
             //elementList1.appendChild(li);
