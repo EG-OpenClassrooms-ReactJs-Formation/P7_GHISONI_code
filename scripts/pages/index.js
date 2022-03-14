@@ -1,5 +1,13 @@
 //import recipes from '../../data'
 //const recipes = require('../../data');
+
+const searchField = document.getElementById("search-input");
+//searchField.onkeyup = updateInput();
+window.ingredientFilterArray = ['Tomate'];
+window.updateFilterRequired = true;
+let elementListContainer = document.querySelectorAll('.dropdown-element-lists');
+const recipesCardsSection = document.querySelector(".cards-section");
+searchField.addEventListener("keyup", updateInput);
 function getRecipes() {
     
     return recipes;
@@ -7,7 +15,7 @@ function getRecipes() {
 
 function displayData(recipes) {
     // To generate recipes cards
-    const recipesCardsSection = document.querySelector(".cards-section");
+    // const recipesCardsSection = document.querySelector(".cards-section");
 
     const ingrediantsDropdown = document.getElementById("dropdown-ingrediants-lists");
     let ingrediantsListNotUnique = [];
@@ -19,12 +27,16 @@ function displayData(recipes) {
 
     let elementInDropdownCounter = 0;
 
-    const inputValue = "Tart";
-    const inputLength = inputValue.length;
-    if (inputLength > 3){
-        const regexp = new RegExp(inputValue, 'i');
-        recipes = recipes.filter(x => regexp.test(x.name));
-    }
+    //const inputValue = "Tart";
+    // const inputValue = searchField.value;
+    
+    
+    // const inputLength = inputValue.length;
+    // if (inputLength > 3){
+    //     const regexp = new RegExp(inputValue, 'i');
+    //     recipes = recipes.filter(x => regexp.test(x.name));
+    //     clearComponents();
+    // }
     recipes.forEach((recipe) => {
         
         const recipesCardsModel = recipesCardsFactory(recipe);
@@ -111,5 +123,47 @@ function init() {
     const recipes = getRecipes();
     displayData(recipes);
 };
+
+function updateInput() {
+    // Récupère les datas des photographes
+    console.log("Update values");
+    
+    const recipes = getRecipes();
+
+    const inputValue = searchField.value;
+    const inputLength = inputValue.length;
+    if (inputLength > 3){
+        const regexp = new RegExp(inputValue, 'i');
+        let recipesFiltered = recipes.filter(x => regexp.test(x.name));
+        clearComponents();
+        displayData(recipesFiltered);
+    }
+    else{
+        clearComponents();
+        displayData(recipes);
+    }
+    
+};
+
+// Clear the dropdown content
+function clearComponents(){
+    //elementListContainer = [...elementListContainer].forEach(child => child.innerHTML = '');
+    elementListContainer.forEach(element =>{
+        
+        var child = element.lastElementChild; 
+        while (child) {
+            element.removeChild(child);
+            child = element.lastElementChild;
+        }
+        //element.remove();
+        
+    });
+    
+    var cardChild = recipesCardsSection.lastElementChild;
+    while (cardChild) {
+        recipesCardsSection.removeChild(cardChild);
+        cardChild = recipesCardsSection.lastElementChild;
+    }
+}
 
 init();

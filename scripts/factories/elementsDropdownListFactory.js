@@ -6,7 +6,7 @@ function elementDropDownListFactory(data, selectedElement) {
     element = data;
     
     function getElementListDropDownDOM(elementName, elementInDropdownCounter) {
-        console.log(element);
+        //console.log(element);
         // declare the element card
         //const elementsContainer = document.createElement('div');
         //elementsContainer.setAttribute("id", "elements-container-ingrediants");
