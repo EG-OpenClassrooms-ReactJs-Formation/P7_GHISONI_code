@@ -62,6 +62,7 @@ function elementDropDownListFactory(data, selectedElement) {
         if (elementName == "appliance"){
             var li = document.createElement('li');
             var elementName = document.createElement('p');
+            
             elementName.textContent = element;
             li.appendChild(elementName);
             //elementList1.appendChild(li);

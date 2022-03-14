@@ -5,8 +5,14 @@
     border-radius: 5px;
     margin-bottom: 20px;
     width: fit-content;
+    color: white;
+    margin-right: 5%;
+    background: white;
 }
-
+ul{
+    display: none;
+    
+}
 #dropdown-ingrediants{
     background-color: #3282f7;
 }
@@ -57,10 +63,10 @@
     animation-timing-function: linear;
     animation-fill-mode: forwards;
 }
-.dropdown-input:focus > .dropdown-element-lists {
-    display: none;
+#dropdown-element-lists{
+    background-color: white;
+    
 }
-
 
 #dropdown-ingredients-lists{
     display: flex;

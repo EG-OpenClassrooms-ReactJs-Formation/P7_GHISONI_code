@@ -8,6 +8,28 @@ window.updateFilterRequired = true;
 let elementListContainer = document.querySelectorAll('.dropdown-element-lists');
 const recipesCardsSection = document.querySelector(".cards-section");
 searchField.addEventListener("keyup", updateInput);
+
+// Get input components
+
+const ingredientInput = document.getElementById("ingredient-input");
+
+
+ingredientInput.addEventListener("focus", showUlSelection);
+//ingredientInput.addEventListener("focusout", hideUlSelection);
+
+function showUlSelection(){
+    document.getElementById("ingredients-list-1").style.display = "block";
+    document.getElementById("ingredients-list-2").style.display = "block";
+    document.getElementById("ingredients-list-3").style.display = "block";
+}
+function hideUlSelection(){
+    document.getElementById("ingredients-list-1").style.display = "none";
+    document.getElementById("ingredients-list-2").style.display = "none";
+    document.getElementById("ingredients-list-3").style.display = "none";
+}
+
+
+
 function getRecipes() {
     
     return recipes;
