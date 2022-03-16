@@ -21,13 +21,16 @@ function elementDropDownListFactory(data, selectedElement) {
             
             elementList1 = document.createElement( 'ul' );
             elementList1.setAttribute("id", elementName + "-list-1");
+            elementList1.setAttribute("class", "ul-element-list");
             // declare recette-list-ingrediants
             elementList2 = document.createElement( 'ul' );
             elementList2.setAttribute("id", elementName + "-list-2");
+            elementList2.setAttribute("class", "ul-element-list");
 
             // declare recette-list-ingrediants
             elementList3 = document.createElement( 'ul' );
             elementList3.setAttribute("id", elementName + "-list-3");
+            elementList3.setAttribute("class", "ul-element-list");
         
         } else{
             elementList1 = document.getElementById(elementName +"-list-1");

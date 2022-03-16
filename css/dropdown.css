@@ -9,9 +9,9 @@
     margin-right: 5%;
     background: white;
 }
-ul{
+
+.ul-element-list{
     display: none;
-    
 }
 #dropdown-ingrediants{
     background-color: #3282f7;
