@@ -12,30 +12,64 @@ searchField.addEventListener("keyup", updateInput);
 // Get input components
 
 const ingredientInput = document.getElementById("ingredient-input");
+const applianceInput = document.getElementById("appliance-input");
+const ustensilInput = document.getElementById("ustensils-input");
 
-
-ingredientInput.addEventListener("focus", showUlSelection);
+ingredientInput.addEventListener("click", () =>showUlSelection("ingredient"));
+applianceInput.addEventListener("click", () =>showUlSelection("appliance"));
+ustensilInput.addEventListener("click", () =>showUlSelection("ustensils"));
 //ingredientInput.addEventListener("focusout", hideUlSelection);
+showDropdown = false;
+function showUlSelection(dataType){
+    if(showDropdown){
+        if(dataType === "ingredient"){
+            document.getElementById("ingredients-list-1").style.display = "block";
+            document.getElementById("ingredients-list-2").style.display = "block";
+            document.getElementById("ingredients-list-3").style.display = "block";
+        }
+        
+        if(dataType === "appliance"){
+            document.getElementById("appliance-list-1").style.display = "block";
+            document.getElementById("appliance-list-2").style.display = "block";
+            document.getElementById("appliance-list-3").style.display = "block";
+        }
 
-function showUlSelection(){
-    document.getElementById("ingredients-list-1").style.display = "block";
-    document.getElementById("ingredients-list-2").style.display = "block";
-    document.getElementById("ingredients-list-3").style.display = "block";
+        
+        if(dataType === "ustensils"){
+            document.getElementById("ustensils-list-1").style.display = "block";
+            document.getElementById("ustensils-list-2").style.display = "block";
+            document.getElementById("ustensils-list-3").style.display = "block";
+        }
+    }
+    
+    
+    else{
+        if(dataType === "ingredient"){
+            document.getElementById("ingredients-list-1").style.display = "none";
+            document.getElementById("ingredients-list-2").style.display = "none";
+            document.getElementById("ingredients-list-3").style.display = "none";
+        }
+        
+        if(dataType === "appliance"){
+            document.getElementById("appliance-list-1").style.display = "none";
+            document.getElementById("appliance-list-2").style.display = "none";
+            document.getElementById("appliance-list-3").style.display = "none";
+        }
 
-    document.getElementById("appliance-list-1").style.display = "block";
-    document.getElementById("appliance-list-2").style.display = "block";
-    document.getElementById("appliance-list-3").style.display = "block";
-
-    document.getElementById("ustensils-list-1").style.display = "block";
-    document.getElementById("ustensils-list-2").style.display = "block";
-    document.getElementById("ustensils-list-3").style.display = "block";
+        
+        if(dataType === "ustensils"){
+            document.getElementById("ustensils-list-1").style.display = "none";
+            document.getElementById("ustensils-list-2").style.display = "none";
+            document.getElementById("ustensils-list-3").style.display = "none";
+        }
+    }
+    showDropdown = !showDropdown;
 }
+/*
 function hideUlSelection(){
-    document.getElementById("ingredients-list-1").style.display = "none";
-    document.getElementById("ingredients-list-2").style.display = "none";
-    document.getElementById("ingredients-list-3").style.display = "none";
+    
 }
-
+*/
 
 
 function getRecipes() {
@@ -144,6 +178,33 @@ function displayData(recipes) {
         ingrediantDropDownModel.getElementListDropDownDOM("ustensils", elementInDropdownCounter);
 
     });
+    if(window.ingredientArray){
+        console.log("Launch factory filters")
+        window.ingredientArray.forEach((element) => {
+            const ingredientSavedFilterModel = savedFilterFactory(element);
+            ingredientSavedFilterModel.getSavedFilterElementDOM("ingredient");
+
+        });
+    }
+
+    if(window.applianceArray){
+        
+        window.applianceArray.forEach((element) => {
+            const ingredientSavedFilterModel = savedFilterFactory(element);
+            ingredientSavedFilterModel.getSavedFilterElementDOM("appliance");
+
+        });
+    }
+
+    if(window.ustensilArray){
+        
+        window.ustensilArray.forEach((element) => {
+            const ingredientSavedFilterModel = savedFilterFactory(element);
+            ingredientSavedFilterModel.getSavedFilterElementDOM("ustensil");
+
+        });
+    }
+    
     
     const IngredientFilterComponent = document.querySelectorAll(".filter-ingredient-element");
     const ApplianceFilterComponent = document.querySelectorAll(".filter-appliance-element");
@@ -152,18 +213,13 @@ function displayData(recipes) {
     getDropDownElementChoice(IngredientFilterComponent, "ingredient");
     getDropDownElementChoice(ApplianceFilterComponent, "appliance");
     getDropDownElementChoice(UstensilFilterComponent, "ustensil");
-    // IngredientFilterComponent.forEach(ingredientFilter => {
-    //     ingredientFilter.addEventListener('click', function handleClick(event){
-    //         console.log(ingredientFilter.textContent);
-    //         if(!window.ingredientArray){
-    //             window.ingredientArray = []
-    //         }
-    //         window.ingredientArray.push(ingredientFilter.textContent);
-            
-    //         updateInput();
-    //     })
-    // });
-
+    
+    const SavedIngredientFilterComponent = document.querySelectorAll(".saved-ingredient-filter");
+    const SavedApplianceFilterComponent = document.querySelectorAll(".saved-appliance-filter");
+    const SavedUstensilFilterComponent = document.querySelectorAll(".saved-ustensils-filter");
+    deleteSavedChoice(SavedIngredientFilterComponent, "ingredient");
+    deleteSavedChoice(SavedApplianceFilterComponent, "appliance");
+    deleteSavedChoice(SavedUstensilFilterComponent, "ustensil");
 };
 
 function init() {
@@ -196,6 +252,12 @@ function updateInput() {
 // Clear the dropdown content
 function clearComponents(){
     //elementListContainer = [...elementListContainer].forEach(child => child.innerHTML = '');
+    
+    // Clear saved Filter row
+
+    var filterRow = document.getElementById("saved-filter-row");
+    filterRow.innerHTML = '';
+    
     elementListContainer.forEach(element =>{
         
         var child = element.lastElementChild; 
@@ -235,6 +297,30 @@ function getDropDownElementChoice(ElementFilterComponent, dataType){
                     window.ustensilArray = []
                 }
                 window.ustensilArray.push(elementFilter.textContent);
+            }
+            
+            
+            updateInput();
+        })
+    });
+}
+
+function deleteSavedChoice(ElementFilterComponent, dataType){
+    ElementFilterComponent.forEach(elementFilter => {
+        elementFilter.addEventListener('click', function handleClick(event){
+            var elementText = elementFilter.firstChild.textContent; 
+            if (dataType==="ingredient"){
+                
+                window.ingredientArray = window.ingredientArray.filter(e => e !== elementText);
+            }
+            if (dataType==="appliance"){
+                if(!window.applianceArray){
+                    window.applianceArray = []
+                }
+                window.applianceArray = window.applianceArray.filter(e => e !== elementText);
+            }
+            if (dataType==="ustensil"){
+                window.ustensilArray = window.ustensilArray.filter(e => e !== elementText);
             }
             
             

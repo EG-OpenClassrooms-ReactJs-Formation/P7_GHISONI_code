@@ -9,7 +9,12 @@
     top: 30%;
     right: 20px;
 }
+.form-container{
+    
+    width: 100%;
+    position: absolute;
 
+}
 .search{
     box-sizing:border-box;
     width: 100%;

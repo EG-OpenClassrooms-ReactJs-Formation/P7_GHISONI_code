@@ -1,0 +1,27 @@
+#saved-filter-row{
+    display: flex;
+    flex-wrap: wrap;
+}
+.saved-element-filter{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-width: 80px;
+    
+    border-radius: 5px;
+    color: white;
+    height: 35px;
+    margin-right: 50px;
+}
+
+.saved-ingredient-filter{
+    background-color: #3282f7;
+}
+
+.saved-appliance-filter{
+    background-color: #68d9a4;
+}
+
+.saved-ustensils-filter{
+    background-color: #ed6454;
+}

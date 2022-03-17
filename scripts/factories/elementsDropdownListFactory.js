@@ -1,8 +1,5 @@
 function elementDropDownListFactory(data, selectedElement) {
     
-    //console.log(element.ingredients.length)
-    //console.log(element.ingredients[0].ingredient)
-    const picture = 'assets/Solid_grey.png';
     element = data;
     
     function getElementListDropDownDOM(elementName, elementInDropdownCounter) {

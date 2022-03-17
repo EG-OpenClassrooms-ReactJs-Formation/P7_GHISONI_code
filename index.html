@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" href="css/main.css" />
         <link rel="stylesheet" href="css/dropdown.css" />
+        <link rel="stylesheet" href="css/saved_filters.css" />
         <link rel="stylesheet" href="css/search_field.css" />
         <title>Les petits plats</title>
     </head>
@@ -16,14 +17,17 @@
             <img src="assets\logo.png"/>
         </header>
         <main>
-            <section>
+            <section class="form-section">
                 <form class="form-container">
                     <div class="form-search-container">
                         <input id="search-input" type="text" name="text" class="search" placeholder="Rechercher une recette" />
                         <i class="fa fa-search search-icon"></i>
                     </div>
 
-                    <!--Create a filter part-->
+                    
+                    <div id="saved-filter-row">
+                        
+                    </div>
                     <div class="filter-row">
                         <div id="dropdown-ingrediants" class="dropdown-container">
                             <div>
@@ -66,6 +70,7 @@
         <script src="data.js"></script>
         <script src="scripts/factories/recipesCardsFactory.js"></script>
         <script src="scripts/factories/elementsDropdownListFactory.js"></script>
+        <script src="scripts/factories/selectedFilterFactory.js"></script>
         <script src="scripts/pages/index.js" ></script>
         
     </body>
