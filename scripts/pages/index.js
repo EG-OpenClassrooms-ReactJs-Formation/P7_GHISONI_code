@@ -284,19 +284,27 @@ function getDropDownElementChoice(ElementFilterComponent, dataType){
                 if(!window.ingredientArray){
                     window.ingredientArray = []
                 }
-                window.ingredientArray.push(elementFilter.textContent);
+                // Add the element into the list if it's not already in
+                if(window.ingredientArray.indexOf(elementFilter.textContent) === -1){
+                    window.ingredientArray.push(elementFilter.textContent);
+                }
+               
             }
             if (dataType==="appliance"){
                 if(!window.applianceArray){
                     window.applianceArray = []
                 }
-                window.applianceArray.push(elementFilter.textContent);
+                if(window.applianceArray.indexOf(elementFilter.textContent) === -1){
+                    window.applianceArray.push(elementFilter.textContent);
+                }
             }
             if (dataType==="ustensil"){
                 if(!window.ustensilArray){
                     window.ustensilArray = []
                 }
-                window.ustensilArray.push(elementFilter.textContent);
+                if(window.ustensilArray.indexOf(elementFilter.textContent) === -1){
+                    window.ustensilArray.push(elementFilter.textContent);
+                }
             }
             
             
