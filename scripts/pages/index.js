@@ -101,22 +101,15 @@ function displayData(recipes) {
     //     recipes = recipes.filter(x => regexp.test(x.name));
     //     clearComponents();
     // }
+
     recipes.forEach((recipe) => {
         
         const recipesCardsModel = recipesCardsFactory(recipe);
         const userCardDOM = recipesCardsModel.getRecipesCardDOM();
         recipesCardsSection.appendChild(userCardDOM);
 
-        // TODO check unicity of each values before pass it to the factory
         
-        //const ingrediantDropDownModel = elementDropDownListFactory(recipe);
-        //const listElementContainerDOM = ingrediantDropDownModel.getElementListDropDownDOM("ingredients");
-        
-        //ingrediantDropDownModel.getElementListDropDownDOM("appliance");
-        //ingrediantDropDownModel.getElementListDropDownDOM("ustensils");
-        //ingrediantsDropdown.appendChild(listElementContainerDOM);
-        
-
+        // TODO improve filter for recipes
         ingrediantsListNotUnique.push(recipe.ingredients[0].ingredient);
         appliancesListNotUnique.push(recipe.appliance);
 
@@ -228,17 +221,95 @@ function init() {
     displayData(recipes);
 };
 
-function updateInput() {
-    // Récupère les datas des photographes
-    console.log("Update values");
-    
-    const recipes = getRecipes();
+function applyRegExArray(texts, re) {
+    re = new RegExp (re.join ('|'));
+    for (var r = [], t = texts.length; t--;)
+      !re.test (texts[t]) && r.unshift (texts[t]);
+    return r;
+}
 
+function updateInput() {
+
+    console.log("Update values");
+
+    // Get data from dataset
+    let recipes = getRecipes();
+    
     const inputValue = searchField.value;
     const inputLength = inputValue.length;
+
+    // Filter the ingredients in the window.ingredientArray
+    
+    if(window.ingredientArray){
+        if(window.ingredientArray.length !== 0){
+
+            recipes = recipes.filter(function (recipe) {
+                var regexArray = window.ingredientArray.map(function(w) {
+                    return new RegExp('\\b' + w + '\\b', 'i');
+                });
+                console.log(regexArray);
+                let ingredientList = [];
+                recipe.ingredients.forEach((ingredientObject) => {
+                    ingredientList.push(ingredientObject.ingredient);
+                });
+                return regexArray.some(function (regex) {
+                    return regex.test(ingredientList);
+                });
+                
+            });
+            recipes = applyRegExArray(recipes, window.ingredientArray);
+        }
+        
+        console.log(recipes);
+    }
+    
+    
+    if(window.applianceArray){
+        window.applianceArray.forEach(appliance => {
+            console.log("done");
+            let regexpAppliance = new RegExp(appliance, 'i');
+            recipes = recipes.filter(x => regexpAppliance.test(x.appliance));
+        });
+    }
+
+    if(window.ustensilArray){
+        if(window.ustensilArray.length !== 0){
+
+            recipes = recipes.filter(function (recipe) {
+                var regexArray = window.ustensilArray.map(function(w) {
+                    return new RegExp('\\b' + w + '\\b', 'i');
+                });
+                console.log(regexArray);
+                
+                return regexArray.some(function (regex) {
+
+                    return regex.test(recipe.ustensils);
+                });
+                
+            });
+            recipes = applyRegExArray(recipes, window.ustensilArray);
+        }
+        
+        console.log(recipes);
+    }
+    
+    
     if (inputLength > 3){
         const regexpSearch = new RegExp(inputValue, 'i');
         let recipesFiltered = recipes.filter(x => regexpSearch.test(x.name));
+        
+        /*
+        const regexpSearchIngrediant = new RegExp(inputValue, 'i');
+        recipesFiltered = recipesFiltered.filter(x => regexpSearchIngrediant.test(x.name));
+        
+
+        window.applianceArray.forEach(appliance => {
+            console.log("done");
+            let regexpAppliance = new RegExp(appliance, 'i');
+            recipesFiltered = recipesFiltered.filter(x => regexpAppliance.test(x.appliance));
+        });
+        */
+
         clearComponents();
         displayData(recipesFiltered);
     }

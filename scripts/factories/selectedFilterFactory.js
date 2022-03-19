@@ -14,7 +14,7 @@ function savedFilterFactory(data) {
         elementName.textContent = element;
 
         const elementIcon = document.createElement( 'i' );
-        elementIcon.setAttribute("class", "fa fa-search");
+        elementIcon.setAttribute("class", "far fa-times-circle");
         // The type should make applies the write class on the element
         if (selectedElementType == "ingredient"){
             elementContainer.setAttribute("class", "saved-element-filter saved-ingredient-filter");

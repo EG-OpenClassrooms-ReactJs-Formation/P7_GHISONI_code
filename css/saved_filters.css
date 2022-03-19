@@ -12,6 +12,10 @@
     color: white;
     height: 35px;
     margin-right: 50px;
+    
+}
+.saved-element-text{
+    padding-right: 15px;
 }
 
 .saved-ingredient-filter{

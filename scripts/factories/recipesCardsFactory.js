@@ -44,7 +44,7 @@ function recipesCardsFactory(data) {
 
         const recette_time_value = document.createElement( 'p' );
         recette_time_value.setAttribute("class", "recette-time-value");
-        recette_time_value.textContent = time;
+        recette_time_value.textContent = time  + " min";
         
         recette_time.appendChild(recette_time_icone);
         recette_time.appendChild(recette_time_value);
