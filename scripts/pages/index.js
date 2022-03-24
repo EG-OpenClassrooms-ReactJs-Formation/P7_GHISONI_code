@@ -110,7 +110,10 @@ function displayData(recipes) {
 
         
         // TODO improve filter for recipes
-        ingrediantsListNotUnique.push(recipe.ingredients[0].ingredient);
+        recipe.ingredients.forEach((ingredient) => {
+            ingrediantsListNotUnique.push(ingredient.ingredient);
+        });
+        
         appliancesListNotUnique.push(recipe.appliance);
 
         //ustensilsListNotUnique.push(recipe.ustensils);
