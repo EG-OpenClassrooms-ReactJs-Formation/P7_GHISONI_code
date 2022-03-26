@@ -3,7 +3,6 @@
 
 const searchField = document.getElementById("search-input");
 //searchField.onkeyup = updateInput();
-window.ingredientFilterArray = ['Tomate'];
 window.updateFilterRequired = true;
 let elementListContainer = document.querySelectorAll('.dropdown-element-lists');
 const recipesCardsSection = document.querySelector(".cards-section");
@@ -72,8 +71,8 @@ function hideUlSelection(){
 */
 
 
-function getRecipes() {
-    
+function getRecipes()
+{
     return recipes;
 }
 
@@ -218,22 +217,63 @@ function displayData(recipes) {
     deleteSavedChoice(SavedUstensilFilterComponent, "ustensil");
 };
 
+function getIngredientFilteredRecipes(recipes){
+    let filteredRecipesList = [];
+    recipes.forEach(recipe => {
+        let filterFound = 0;
+        let alreadyAdded = false;
+        recipe.ingredients.forEach(ingredient => {
+            
+            if(window.ingredientArray.includes(ingredient.ingredient)){
+                filterFound +=1;
+                //filteredRecipesList.push(recipe);
+                
+            }
+            if(filterFound == window.ingredientArray.length && alreadyAdded == false){
+                filteredRecipesList.push(recipe);
+                alreadyAdded = true;
+            }
+        })
+        
+    });
+
+    return filteredRecipesList;
+}
+function getUstensilFilteredRecipes(recipes){
+    let filteredRecipesList = [];
+    recipes.forEach(recipe => {
+        let filterFound = 0;
+        let alreadyAdded = false;
+        recipe.ustensils.forEach(ustensil => {
+            
+            if(window.ustensilArray.includes(ustensil)){
+                filterFound +=1;
+                //filteredRecipesList.push(recipe);
+                
+            }
+            if(filterFound == window.ustensilArray.length && alreadyAdded == false){
+                filteredRecipesList.push(recipe);
+                alreadyAdded = true;
+            }
+        })
+        
+    });
+
+    return filteredRecipesList;
+}
+
+
+
 function init() {
     // Récupère les datas des photographes
     const recipes = getRecipes();
     displayData(recipes);
 };
 
-function applyRegExArray(texts, re) {
-    re = new RegExp (re.join ('|'));
-    for (var r = [], t = texts.length; t--;)
-      !re.test (texts[t]) && r.unshift (texts[t]);
-    return r;
-}
 
 function updateInput() {
 
-    console.log("Update values");
+    //console.log("Update values");
 
     // Get data from dataset
     let recipes = getRecipes();
@@ -246,21 +286,7 @@ function updateInput() {
     if(window.ingredientArray){
         if(window.ingredientArray.length !== 0){
 
-            recipes = recipes.filter(function (recipe) {
-                var regexArray = window.ingredientArray.map(function(w) {
-                    return new RegExp('\\b' + w + '\\b', 'i');
-                });
-                console.log(regexArray);
-                let ingredientList = [];
-                recipe.ingredients.forEach((ingredientObject) => {
-                    ingredientList.push(ingredientObject.ingredient);
-                });
-                return regexArray.some(function (regex) {
-                    return regex.test(ingredientList);
-                });
-                
-            });
-            recipes = applyRegExArray(recipes, window.ingredientArray);
+            recipes = getIngredientFilteredRecipes(recipes);
         }
         
         console.log(recipes);
@@ -277,23 +303,12 @@ function updateInput() {
 
     if(window.ustensilArray){
         if(window.ustensilArray.length !== 0){
-
-            recipes = recipes.filter(function (recipe) {
-                var regexArray = window.ustensilArray.map(function(w) {
-                    return new RegExp('\\b' + w + '\\b', 'i');
-                });
-                console.log(regexArray);
-                
-                return regexArray.some(function (regex) {
-
-                    return regex.test(recipe.ustensils);
-                });
-                
-            });
-            recipes = applyRegExArray(recipes, window.ustensilArray);
+            
+            recipes = getUstensilFilteredRecipes(recipes);
+            
         }
         
-        console.log(recipes);
+        //console.log(recipes);
     }
     
     
@@ -301,17 +316,6 @@ function updateInput() {
         const regexpSearch = new RegExp(inputValue, 'i');
         let recipesFiltered = recipes.filter(x => regexpSearch.test(x.name));
         
-        /*
-        const regexpSearchIngrediant = new RegExp(inputValue, 'i');
-        recipesFiltered = recipesFiltered.filter(x => regexpSearchIngrediant.test(x.name));
-        
-
-        window.applianceArray.forEach(appliance => {
-            console.log("done");
-            let regexpAppliance = new RegExp(appliance, 'i');
-            recipesFiltered = recipesFiltered.filter(x => regexpAppliance.test(x.appliance));
-        });
-        */
 
         clearComponents();
         displayData(recipesFiltered);
@@ -353,7 +357,7 @@ function clearComponents(){
 function getDropDownElementChoice(ElementFilterComponent, dataType){
     ElementFilterComponent.forEach(elementFilter => {
         elementFilter.addEventListener('click', function handleClick(event){
-            console.log(elementFilter.textContent);
+            //console.log(elementFilter.textContent);
             if (dataType==="ingredient"){
                 if(!window.ingredientArray){
                     window.ingredientArray = []
