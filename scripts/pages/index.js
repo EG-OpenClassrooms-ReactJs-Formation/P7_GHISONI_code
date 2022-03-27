@@ -15,24 +15,39 @@ const recipesCardsSection = document.querySelector(".cards-section");
 
 searchField.addEventListener("keyup", updateInput);
 ingredientSearchField.addEventListener("keyup", updateInput);
+applianceSearchField.addEventListener("keyup", updateInput);
+ustensilsSearchField.addEventListener("keyup", updateInput);
 
 
-//applianceSearchField.addEventListener("keyup", updateElementListInput);
-//ustensilsSearchField.addEventListener("keyup", updateElementListInput);
+function updateIngredientListInput(elementType, elementListUnique){
+    let inputValue = null;
+    if(elementType === 'ingredient')
+    {
+        inputValue = ingredientSearchField.value;
+    }
+    if(elementType === 'ustensils')
+    {
+        inputValue = ustensilsSearchField.value;
+        
+    }
+    if(elementType === 'appliance')
+    {
+        inputValue = applianceSearchField.value;
 
-function updateIngredientListInput(){
-    const inputValue = ingredientSearchField.value;
+    }
+
     const inputLength = inputValue.length;
-
-    let ingrediantsListUniqueFiltered = []
-    if (inputLength > 1){
+    let elementListUniqueFiltered = []
+    if (inputLength > 0){
         const regexpSearch = new RegExp(inputValue, 'i');
-        ingrediantsListUniqueFiltered = ingrediantsListUnique.filter(x => regexpSearch.test(x));
+        elementListUniqueFiltered = elementListUnique.filter(x => regexpSearch.test(x));
     }
     else{
-        ingrediantsListUniqueFiltered = ingrediantsListUnique;
+        elementListUniqueFiltered = elementListUnique;
     }
-    return ingrediantsListUniqueFiltered;
+
+    return elementListUniqueFiltered;
+    
 }
 // Get input components
 
@@ -164,8 +179,12 @@ function displayData(recipes) {
         }
     });
     elementInDropdownCounter = 0;
-    window.ingrediantsListUnique = ingrediantsListUnique;
-    ingrediantsListUnique = updateIngredientListInput();
+    
+
+    ingrediantsListUnique = updateIngredientListInput('ingredient', ingrediantsListUnique);
+    appliancesListUnique = updateIngredientListInput('appliance', appliancesListUnique);
+    ustensilsListUnique = updateIngredientListInput('ustensils', ustensilsListUnique);
+
     ingrediantsListUnique.forEach((ingrediant) => {
         elementInDropdownCounter +=1;
         const ingrediantDropDownModel = elementDropDownListFactory(ingrediant);
@@ -173,6 +192,7 @@ function displayData(recipes) {
         
         
     });
+
     
     elementInDropdownCounter = 0;
     appliancesListUnique.forEach((appliance) => {
@@ -236,105 +256,6 @@ function displayData(recipes) {
     deleteSavedChoice(SavedUstensilFilterComponent, "ustensil");
 
 };
-
-function displayFilterContent(){
-    ingrediantsListNotUnique.forEach((ingrediant) => {
-            
-        //ingrediants.push(ingrediant.ingredient);
-        if(ingrediantsListUnique.indexOf(ingrediant) === -1) {
-            ingrediantsListUnique.push(ingrediant);
-            
-        }
-    });
-
-    appliancesListNotUnique.forEach((appliance) => {
-            
-        //ingrediants.push(ingrediant.ingredient);
-        if(appliancesListUnique.indexOf(appliance) === -1) {
-            appliancesListUnique.push(appliance);
-            
-        }
-    });
-
-    ustensilsListNotUnique.forEach((ustensil) => {
-            
-        //ingrediants.push(ingrediant.ingredient);
-        if(ustensilsListUnique.indexOf(ustensil) === -1) {
-            ustensilsListUnique.push(ustensil);
-            
-        }
-    });
-    elementInDropdownCounter = 0;
-    ingrediantsListUnique = updateIngredientListInput(ingrediantsListUnique);
-    ingrediantsListUnique.forEach((ingrediant) => {
-        elementInDropdownCounter +=1;
-        const ingrediantDropDownModel = elementDropDownListFactory(ingrediant);
-        const listElementContainerDOM = ingrediantDropDownModel.getElementListDropDownDOM("ingredients", elementInDropdownCounter);
-        
-        
-    });
-    
-    elementInDropdownCounter = 0;
-    appliancesListUnique.forEach((appliance) => {
-        elementInDropdownCounter +=1;
-        const ingrediantDropDownModel = elementDropDownListFactory(appliance);
-        
-        ingrediantDropDownModel.getElementListDropDownDOM("appliance", elementInDropdownCounter);
-
-        
-    });
-    //console.log(ustensilsListUnique);
-    elementInDropdownCounter = 0;
-
-    ustensilsListUnique.forEach((ustensil) => {
-        elementInDropdownCounter +=1;
-        const ingrediantDropDownModel = elementDropDownListFactory(ustensil);
-        ingrediantDropDownModel.getElementListDropDownDOM("ustensils", elementInDropdownCounter);
-
-    });
-    if(window.ingredientArray){
-        //console.log("Launch factory filters")
-        window.ingredientArray.forEach((element) => {
-            const ingredientSavedFilterModel = savedFilterFactory(element);
-            ingredientSavedFilterModel.getSavedFilterElementDOM("ingredient");
-
-        });
-    }
-
-    if(window.applianceArray){
-        
-        window.applianceArray.forEach((element) => {
-            const ingredientSavedFilterModel = savedFilterFactory(element);
-            ingredientSavedFilterModel.getSavedFilterElementDOM("appliance");
-
-        });
-    }
-
-    if(window.ustensilArray){
-        
-        window.ustensilArray.forEach((element) => {
-            const ingredientSavedFilterModel = savedFilterFactory(element);
-            ingredientSavedFilterModel.getSavedFilterElementDOM("ustensil");
-
-        });
-    }
-    
-    
-    const IngredientFilterComponent = document.querySelectorAll(".filter-ingredient-element");
-    const ApplianceFilterComponent = document.querySelectorAll(".filter-appliance-element");
-    const UstensilFilterComponent = document.querySelectorAll(".filter-ustensil-element");
-
-    getDropDownElementChoice(IngredientFilterComponent, "ingredient");
-    getDropDownElementChoice(ApplianceFilterComponent, "appliance");
-    getDropDownElementChoice(UstensilFilterComponent, "ustensil");
-    
-    const SavedIngredientFilterComponent = document.querySelectorAll(".saved-ingredient-filter");
-    const SavedApplianceFilterComponent = document.querySelectorAll(".saved-appliance-filter");
-    const SavedUstensilFilterComponent = document.querySelectorAll(".saved-ustensils-filter");
-    deleteSavedChoice(SavedIngredientFilterComponent, "ingredient");
-    deleteSavedChoice(SavedApplianceFilterComponent, "appliance");
-    deleteSavedChoice(SavedUstensilFilterComponent, "ustensil");
-}
 
 function getIngredientFilteredRecipes(recipes){
     let filteredRecipesList = [];
