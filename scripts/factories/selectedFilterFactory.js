@@ -14,7 +14,7 @@ function savedFilterFactory(data) {
         elementName.textContent = element;
 
         const elementIcon = document.createElement( 'i' );
-        elementIcon.setAttribute("class", "far fa-times-circle");
+        elementIcon.setAttribute("class", "far fa-times-circle time-circle-icon");
         // The type should make applies the write class on the element
         if (selectedElementType == "ingredient"){
             elementContainer.setAttribute("class", "saved-element-filter saved-ingredient-filter");

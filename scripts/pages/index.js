@@ -60,10 +60,29 @@ ingredientInput.addEventListener("click", () =>showUlSelection("ingredient"));
 applianceInput.addEventListener("click", () =>showUlSelection("appliance"));
 ustensilInput.addEventListener("click", () =>showUlSelection("ustensils"));
 
+// Hide element if a click is done outside
+document.addEventListener('click', function(event) {
+    var isClickInsideIngredient = document.getElementById('dropdown-ingrediants').contains(event.target);
+    var isClickInsideAppliance = document.getElementById('dropdown-appliance').contains(event.target);
+    var isClickInsideUstensil = document.getElementById('dropdown-ustensils').contains(event.target);
+    if (!isClickInsideIngredient) {
+        //Do something click is outside specified element
+        console.log('Click outside ingredient');
+        hideUlSelection("ingredient");
 
-//ingredientInput.addEventListener("focusout", () =>hideUlSelection("ingredient"));
-//applianceInput.addEventListener("focusout", () =>hideUlSelection("appliance"));
-//ustensilInput.addEventListener("focusout", () =>hideUlSelection("ustensils"));
+    }
+    if (!isClickInsideAppliance) {
+        //Do something click is outside specified element
+        console.log('Click outside appliance');
+        hideUlSelection("appliance");
+    }
+    if (!isClickInsideUstensil) {
+        //Do something click is outside specified element
+        console.log('Click outside ustensils');
+        hideUlSelection("ustensils");
+    }
+});
+
 
 showDropdown = true;
 function showUlSelection(dataType){
@@ -74,8 +93,6 @@ function showUlSelection(dataType){
         document.getElementById("ingredients-list-3").style.display = "block";
         document.getElementById("dropdown-ingrediants").style.height = "auto";
 
-        hideUlSelection("appliance");
-        hideUlSelection("ustensils");
     }
     
     if(dataType === "appliance"){
@@ -83,8 +100,7 @@ function showUlSelection(dataType){
         document.getElementById("appliance-list-2").style.display = "block";
         document.getElementById("appliance-list-3").style.display = "block";
         document.getElementById("dropdown-appliance").style.height = "auto";
-        hideUlSelection("ingredient");
-        hideUlSelection("ustensils");
+    
     }
 
     
@@ -93,8 +109,7 @@ function showUlSelection(dataType){
         document.getElementById("ustensils-list-2").style.display = "block";
         document.getElementById("ustensils-list-3").style.display = "block";
         document.getElementById("dropdown-ustensils").style.height = "auto";
-        hideUlSelection("ingredient");
-        hideUlSelection("appliance");
+        
     }
     
     

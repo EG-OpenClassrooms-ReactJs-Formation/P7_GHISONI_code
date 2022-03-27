@@ -16,6 +16,7 @@
 }
 .saved-element-text{
     padding-right: 15px;
+    padding-left: 10px;
 }
 
 .saved-ingredient-filter{
@@ -28,4 +29,8 @@
 
 .saved-ustensils-filter{
     background-color: #ed6454;
+}
+
+.time-circle-icon{
+    padding-right: 10px;
 }

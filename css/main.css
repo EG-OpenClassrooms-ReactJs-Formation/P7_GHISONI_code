@@ -5,7 +5,7 @@ body{
 
 .filter-row{
     display: flex;
-    
+    padding-top: 25px;
 }
 
 .form-section{
@@ -19,7 +19,6 @@ body{
     justify-content: space-between;
     padding-top: 200px;
 }
-
 
 
 
