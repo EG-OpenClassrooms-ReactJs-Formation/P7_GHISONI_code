@@ -11,16 +11,19 @@
 }
 
 .ul-element-list{
-    display: block;
+    display: none;
 }
 #dropdown-ingrediants{
     background-color: #3282f7;
+    height: 35px;
 }
 #dropdown-appliance{
     background-color: #68d9a4;
+    height: 35px;
 }
 #dropdown-ustensils{
     background-color: #ed6454;
+    height: 35px;
 }
 
 .elements-container{
@@ -43,6 +46,7 @@
     border-radius: 2px;
     padding: 10px;
     height: 100%;
+    color: white;
 }
 .dropdown-input::placeholder{
     color: white;

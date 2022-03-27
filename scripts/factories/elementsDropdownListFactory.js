@@ -15,21 +15,29 @@ function elementDropDownListFactory(data, selectedElement) {
         var elementList3 = 0;
         
         if(!document.getElementById(elementName +"-list-1")){
-            
+            console.log('First declaration of the ul list');
             elementList1 = document.createElement( 'ul' );
-            elementList1.setAttribute("id", elementName + "-list-1");
-            elementList1.setAttribute("class", "ul-element-list");
+            
+            
             // declare recette-list-ingrediants
             elementList2 = document.createElement( 'ul' );
-            elementList2.setAttribute("id", elementName + "-list-2");
-            elementList2.setAttribute("class", "ul-element-list");
+            
+            
 
             // declare recette-list-ingrediants
             elementList3 = document.createElement( 'ul' );
+            
+            
+            elementList1.setAttribute("id", elementName + "-list-1");
+            elementList2.setAttribute("id", elementName + "-list-2");
             elementList3.setAttribute("id", elementName + "-list-3");
+
+            elementList1.setAttribute("class", "ul-element-list");
+            elementList2.setAttribute("class", "ul-element-list");
             elementList3.setAttribute("class", "ul-element-list");
         
         } else{
+            
             elementList1 = document.getElementById(elementName +"-list-1");
             
             elementList2 = document.getElementById(elementName +"-list-2");
