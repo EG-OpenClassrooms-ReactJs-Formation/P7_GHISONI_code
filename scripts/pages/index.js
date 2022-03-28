@@ -1,6 +1,8 @@
 //import recipes from '../../data'
 //const recipes = require('../../data');
 
+const indexed_loop = true;
+
 const searchField = document.getElementById("search-input");
 
 const ingredientSearchField = document.getElementById("ingredient-input");
@@ -383,9 +385,18 @@ function updateInput() {
     
     
     if (inputLength > 3){
+        let recipesFiltered = [];
         const regexpSearch = new RegExp(inputValue, 'i');
-        let recipesFiltered = recipes.filter(x => regexpSearch.test(x.name));
-        
+        if(indexed_loop === true){
+            for(let index = 0; index < recipes.length; index++){
+                if(regexpSearch.test(recipes[index].name)){
+                    recipesFiltered.push(recipes[index]);
+                }
+            }
+        }
+        else{
+            recipesFiltered = recipes.filter(x => regexpSearch.test(x.name));
+        }
 
         clearComponents();
         displayData(recipesFiltered);
@@ -394,7 +405,6 @@ function updateInput() {
         clearComponents();
         displayData(recipes);
     }
-    
 };
 
 // Clear the dropdown content
