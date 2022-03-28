@@ -449,6 +449,7 @@ function getDropDownElementChoice(ElementFilterComponent, dataType){
                 }
                 if(window.applianceArray.indexOf(elementFilter.textContent) === -1){
                     window.applianceArray.push(elementFilter.textContent);
+                    applianceInput.value = "";
                     hideUlSelection("appliance");
                 }
             }
@@ -458,6 +459,7 @@ function getDropDownElementChoice(ElementFilterComponent, dataType){
                 }
                 if(window.ustensilArray.indexOf(elementFilter.textContent) === -1){
                     window.ustensilArray.push(elementFilter.textContent);
+                    ustensilInput.value = "";
                     hideUlSelection("ustensils");
                 }
             }

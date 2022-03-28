@@ -40,7 +40,7 @@ function recipesCardsFactory(data) {
         recette_time.setAttribute("class", "recette-time");
 
         const recette_time_icone = document.createElement( 'i' );
-        recette_time_icone.setAttribute("class", "fa fa-clock");
+        recette_time_icone.setAttribute("class", "far fa-clock");
 
         const recette_time_value = document.createElement( 'p' );
         recette_time_value.setAttribute("class", "recette-time-value");
@@ -69,7 +69,7 @@ function recipesCardsFactory(data) {
             pIngrediant.setAttribute("class", "recette-ingrediant");
             pQuantity.setAttribute("class", "recette-ingrediant-quantity");
             
-            pIngrediant.textContent = ingredients[i].ingredient + ":";
+            pIngrediant.textContent = ingredients[i].ingredient + ": ";
             pQuantity.textContent = ingredients[i].quantity;
             if(ingredients[i].unit){
                 pQuantity.textContent += ingredients[i].unit;
@@ -80,10 +80,9 @@ function recipesCardsFactory(data) {
         }
 
         // declare recette-description
-        const recette_description = document.createElement( 'p' );
+        const recette_description = document.createElement('p');
         recette_description.setAttribute("class", "recette-description");
         recette_description.textContent = description;
-
 
         // Append child in recette_row_ingrediants_description
         recette_row_ingrediants_description.appendChild(recette_list_ingrediants);

@@ -2,7 +2,11 @@ body{
     margin-left:5%;
     margin-right: 5%;
 }
-
+header{
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
 .filter-row{
     display: flex;
     padding-top: 25px;
@@ -19,12 +23,9 @@ body{
     justify-content: space-between;
     padding-top: 200px;
 }
-
-
-
 .recette-card{
 
-    flex: 0 0 30%;                       /* don't grow, don't shrink, width */
+    flex: 0 0 21%;                       /* don't grow, don't shrink, width */
     flex-direction: column;
     border-radius: 5px;
     
@@ -35,6 +36,41 @@ body{
     transition: 0.3s;
     overflow: hidden;
     
+}
+@media all and (max-width: 1280px){
+
+    .recette-card{
+
+        flex: 0 0 30%;                       /* don't grow, don't shrink, width */
+        
+        
+    }
+}
+
+@media all and (max-width: 768px){
+    .cards-section{
+
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .recette-card{
+
+        flex: 0 0 40%;                       /* don't grow, don't shrink, width */
+        flex-direction: column;
+        border-radius: 5px;
+        
+        max-height: 300px;
+        margin-bottom: 2%;
+        
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        overflow: hidden;
+        
+    }
+    .recette-card-image{
+        max-height:145px;
+    }
 }
 
 .recette-card-image-container{
@@ -65,7 +101,7 @@ body{
 .recette-time{
     align-items: center;
     display: flex;
-    width: 100px;
+    width: 70px;
     justify-content: space-around;
 }
 .recette-row-ingrediants-description{
@@ -84,30 +120,47 @@ body{
     text-decoration: none;
     list-style-type: none;
 }
+
+.recette-titre{
+    width: 50%;
+}
 .recette-description{
-    
-    max-width: 40%;
+    /* display: block;
+    width: calc(40%);
     font-size: 12px;
-    max-height: 100px;
-    text-overflow: ellipsis;
+    height: 70px;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; */
+    display: -webkit-box;
+    font-size: 12px;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    max-width: calc(40%);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height:60px /* fallback */
+    
 }
 .recette-ingrediant{
     font-weight: bold;
-    font-size: 10px;
+    font-size: 11px;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin: 0;
 }
 .recette-ingrediant-quantity{
-    font-size: 10px;
+    font-size: 11px;
+    padding-left: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin: 0;
 }
 
 li{
     display: flex;
     align-items: center;
-    height: 30px;
+    line-height: 1.5;
     
 }
 
@@ -115,4 +168,5 @@ li{
     content: "";
     flex: auto;
     max-width: 30%;
+    min-width: 21%;
 }
